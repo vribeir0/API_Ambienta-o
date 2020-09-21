@@ -1,5 +1,5 @@
 # API_Ambientação
-(EM DESENVOLVIMENTO) Site/API que realiza geração do conteúdo dinâmicamente com os dados obtidos do banco.
+(EM DESENVOLVIMENTO) Site/API que realiza geração do conteúdo do site dinâmicamente a partir dos dados contidos no banco.
 HTML/JS
     Bootstrap4
     Sweetalert2
