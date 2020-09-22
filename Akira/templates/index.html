@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    {% include 'addons/header.html'%}
+</head>
+
+<body>
+    <!--NAVBAR-->
+    <nav id="navbarCTIC" class="navbar navbar-expand-lg fixed-top navbar-dark px-2 py-2">
+        <a class="navbar-brand py-0" href="#####" target="_blank"><img
+                src="{{url_for('static',filename='img/logo/asdz.png')}}"
+                alt="#####" height="30vh"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link py-0" href="/">Início</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link py-0" href="#conteudo">Conteúdo</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link py-0" href="#abouts">Sobre</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link py-0" href="#contatos">Contatos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link py-0" href="#####"
+                        target="_blank">Ambientação Tecnológica</a>
+                </li>
+                <li class="nav-item">
+                    <a href="admin" class="btn bg-hover py-0 mr-1 ml-1" role="button">Admin</a>
+                </li>
+                <li class="nav-item">
+                    <a href="logout" class="btn bg-hover py-0 mr-1 ml-1" role="button">Logout</a>
+                </li>
+                <li>
+                    <form action="login">
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!--definition_image//carroussel    Responsivo-ok//Finalizado-ok   -->
+    <div id="carouselFull" class="carousel slide span6" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="img"><img class="d-block img-fluid"
+                        src="{{url_for('static',filename='img/defimage/blue_def.png')}}" alt="Primeiro Slide"></div>
+                <div class="carousel-caption d-md-block">
+                    <h3>current_user.data.cn[0], Bem-vindo ao Akira.</h3>
+                    <p>####</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Conteúdo-->
+    <br>
+    <div id="conteudo" class="anchor"></div>
+    <div class="container-fluid text-center" style="background-color: transparent;">
+        <div id="ori2" class="text-center text-white">
+            <div id="orientacao" class="anchor"></div>
+            <h2>Conteúdo</h2>
+            <h5>Para acesso rápido, abaixo estão listados os conteúdos que esta ferramenta dispõe:</h5>
+        </div>
+        <br>
+        {% set count = namespace(value=0) %}
+        {% set itr = namespace(value=0) %}
+        {% for categoria in categorias %}
+        <!--Lista de conteudo *modelo*-->
+        {% set p_categoria = '#' + 'categoria' + count.value|string %}
+        {% set id_categoria = 'categoria' + count.value|string%}
+        
+        <div class="row">
+            <div class="card-deck" style="width: 60vw;padding-bottom: 1vh;">
+                <div class="card bg-MPF">
+                    <div class="card-header text-white bg-hover" data-toggle="collapse" data-target="{{ p_categoria }}"
+                        style="cursor: pointer;">
+                        <p class="card-text" style="font-size: 1vw;"><b style="float:left">{{categoria}}</b><i
+                                style="float: right" class="fa fa-chevron-down" aria-hidden="true"></i></p>
+                    </div>
+                    <div id={{id_categoria}} class="collapse" style="font-size: 1vw;">
+                    {% for subcategoria in conteudos[categoria] %}
+                        {% set p_subcategoria = '#' + 'subcategoria' + count.value|string %}
+                        {% set id_subcategoria = 'subcategoria' + count.value|string %}
+                        <div class="card-body text-white ">
+                            <a style="float:left; cursor: pointer;" data-toggle="modal" data-target="{{p_subcategoria}}"><b>{{subcategoria}}</b></a>
+                            <div id={{id_subcategoria}} class="modal fade" tabindex="-1" role="dialog"
+                                aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                    <div class="modal-content bg-white" style="color:black;">
+                                        <div class="modal-header text-white" style="background-color: #002d41;">
+                                            <h5 class="modal-title"><b>{{subcategoria}}</b></h5>
+                                            <button type="button" class="close text-white" data-dismiss="modal"
+                                                aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        {% for problems in conteudos[categoria][subcategoria] %}
+                                            {% set itr.value = itr.value + 1 %}
+                                            {% set p_problem = '#' + 'problem' + itr.value|string %}
+                                            {% set id_problem = 'problem' + itr.value|string %}
+                                        <div class="modal-body card" style="color:black;">
+                                            <div data-toggle="collapse" data-target="{{p_problem}}"
+                                                style="cursor: pointer;">
+                                                <p style="font-size: 1vw; cursor:pointer;"><b style="float:left">
+                                                        {{problems["Problema"]}}</b><i style="float: right"
+                                                        class="fa fa-chevron-down" aria-hidden="true"></i></p>
+                                            </div>
+                                            <div id="{{id_problem}}" class="collapse" style="font-size: 1vw;">
+                                                <br>
+                                                {% if problems["Solução"] != '!SNP!' %}
+                                                <a style="float:left;"> {{problems["Solução"]}}</a>
+                                                {% else %}
+                                                <a style="float:left;">    
+                                                    Este problema só pode ser resolvido por um de nossos técnicos.
+                                                    Por favor, abra um chamado no SNP para que possamos te ajudar.                                            
+                                                </a>
+                                                {% endif %}
+                                            </div>
+                                
+                                        </div>
+                                        {% endfor %}
+                                        <div class="modal-footer bg-MPF text-white">
+                                            <button type="button" class="close text-white" data-dismiss="modal"
+                                            aria-label="Close"><b>Fechar</b></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="divider"></div>
+                        {% set count.value = count.value + 1 %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Fim de conteudo *modelo*-->
+        {% endfor %}
+    </div>
+    <!--fim de sobre-->
+    <div id="about2" class="text-center text-white">
+        <div id="abouts" class="anchor"></div>
+        <br>
+        <h2>Sobre</h2>
+        <h5>Descrição do sistema</h5>
+        <br>
+        <p class="lead padding-text-esp">#######
+        </p>
+        <p class="lead padding-text-esp">
+            ###########.
+        </p>
+        <p class="lead padding-text-esp">
+                </div>
+            </div>
+        </div>
+        <br>
+    </div>
+    <!--Bot-->
+    <div class="akira_bot">
+        <img id="icon_bot" class="icone_bot" onclick="Inicializarbot()" src="{{url_for('static',filename='img/bot/icone.jpg')}}"
+            style="float: right;">
+            <div id="chat_box" class="chat_box" style="float: right;">
+                <div class="Top_bar_conversation">
+                    <img src="{{url_for('static',filename='img/bot/icone.jpg')}}" class="Top_icon">
+                    <h3>Akira</h3>
+                </div>
+                <div id="conversation" style="max-height: 32vh; overflow-y: scroll;display: block;">
+                </div>
+                <form action="" >
+                    <div class="input_text">
+                        <textarea name="" id="message" cols="30" rows="2" placeholder="Conte-nos o seu problema" 
+                        style="width: 100%; background: none; border: none; color: white; resize: none;"></textarea>
+                        <button type="button" onClick="EnviarMensagem()" style="background: none; border: none;">
+                            <img src="{{ url_for('static', filename='img/icon_enviar.png') }}" alt="icon_enviar"
+                                style="width: 26px; margin: 5px;">
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            
+    </div>
+</body>
+{%include 'addons/footer.html'%}
+
+</html>

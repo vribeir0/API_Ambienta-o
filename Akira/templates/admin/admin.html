@@ -1,0 +1,160 @@
+{% extends "admin/pattern_admin.html"%}
+
+{% block chartcontentscript %}
+<script type="text/javascript">
+    google.charts.load("current", { packages: ["corechart"] });
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+            ['Task', 'Hours per Day'],
+            ['Work', 11],
+            ['Eat', 2],
+            ['Commute', 2],
+            ['Watch TV', 2],
+            ['Sleep', 7]
+        ]);
+
+        var options = {
+            is3D: true,
+            chartArea: { left: 10, top: 10, width: '100%', height: '100%' },
+            backgroundColor: "#002d41",
+            pieSliceText: 'label',
+            pieSliceTextStyle:{color: 'black',fontSize:16},
+            legend: {
+                alignment: 'center',
+                orientation: 'vertical', textStyle: { color: 'white' , bold:'True'}
+            },
+            slices: {
+                0: { color: '#8DE0D0' },
+                1: { color: '#30D1BB' },
+                2: { color: '#18BC9C' },
+                3: { color: '#067D65' },
+                4: { color: '#599C8E' }
+            }
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+        chart.draw(data, options);
+    }
+</script>
+{% endblock %}
+
+{% block lateraltool %}
+<div class="sideMenu bg-mattBlackLight">
+    <div class="sidebar">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a href="admin" class="nav-link active px-3">
+                    <i class="fa fa-area-chart icon"></i>
+                    <span class="text">Dashboard</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="admin_cd" class="nav-link px-3">
+                    <i class="fa fa-plus-square icon"></i>
+                    <span class="text">Cadastrar Dica</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="admin_up" class="nav-link px-3">
+                    <i class="fa fa-pencil icon"></i>
+                    <span class="text">Atualizar Dica</span></a>
+            </li>
+            <li class="nav-item">
+                <a href="admin_del" class="nav-link px-3">
+                    <i class="fa fa-trash-o icon"></i>
+                    <span class="text">Deletar Dicas</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="admin_ca" class="nav-link px-3">
+                    <i class="fa fa-user icon"></i>
+                    <span class="text">Cadatrar Administrador</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/" class="nav-link px-3">
+                    <i class="fa fa-backward icon"></i>
+                    <span class="text">Retornar ao Geral</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+{% endblock %}
+
+{% block body %}
+<div class="content">
+    <main>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="bg-mattBlackLight text-center my-2 p-3">
+                        Bem vindo ao sistema de administração do Akira.
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="bg-mattBlackLight text-center my-2 p-3">
+                        Inserir dashboard, gráficos, controles, cada row é um gráfico (utiliza-se o col-md-12)
+                        Para isto recomendo a API do google
+                        conecta-se ao banco ve a quantia de acessos de um tipo de dicas através de contagem de acesso
+                        do mongo db
+                        e plota um grafico usando google charts (API em js/python)
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 my-3">
+                    <div class="bg-mattBlackLight p-3">
+                        <h4 class="mb-2">Acessos</h4>
+                        <div class="progress" style="height: 16px;">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"
+                                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                47
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 my-3">
+                    <div class="bg-mattBlackLight p-3">
+                        <h4 class="mb-2">Completed</h4>
+                        <div class="progress" style="height: 16px;">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 80%;"
+                                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                80
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 my-3">
+                    <div class="bg-mattBlackLight p-3">
+                        <h4 class="mb-2">Completed</h4>
+                        <div class="progress" style="height: 16px;">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 80%;"
+                                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                80
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="bg-mattBlackLight p-3">
+                        <h4 class="mb-2">Teste de Gráfico</h4>
+                        <div id="piechart_3d" style="width: 41vw; height: 50vh;"></div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="bg-mattBlackLight p-3">
+                        <h4 class="mb-2">Completed</h4>
+                        <div id="piechart_3dv2" style="width: 35vw;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+{% endblock%}

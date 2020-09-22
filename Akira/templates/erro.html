@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  {% include 'addons/header.html'%}
+</head>
+
+<body>
+  <!--NAVBAR-->
+  <nav id="navbarCTIC" class="navbar navbar-expand-lg fixed-top navbar-dark px-2 py-2">
+    <a class="navbar-brand py-0" href="#####" target="_blank"><img
+        src="{{url_for('static',filename='img/as.jpg')}}"
+        alt="#######" height="30vh"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+      aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link py-0" href="/">Início</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link py-0" href="#contatos">Contatos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link py-0" href="#####"
+            target="_blank">Ambientação Tecnológica</a>
+        </li>
+        <li class="nav-item">
+          <a href="admin" class="btn bg-hover py-0 mr-1 ml-1" role="button">Admin</a>
+        </li>
+        <li class="nav-item">
+          <a href="logout" class="btn bg-hover py-0 mr-1 ml-1" role="button">Logout</a>
+        </li>
+        <li>
+          <form action="login">
+          </form>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <!--definition_image//carroussel    Responsivo-ok//Finalizado-ok   -->
+  <div id="carouselFull" class="carousel slide span6" data-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <div class="img"><img class="d-block img-fluid" src="{{url_for('static',filename='img/defimage/blue_def.png')}}"
+            alt="Primeiro Slide"></div>
+        <div class="carousel-caption d-md-block">
+          <h3>{{current_user.data.cn[0]}}, esta página não existe,</h3>
+          <h3>você será redirecionado à página principal em instantes.</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="con2" class="text-center text-white">
+    <div id="contatos" class="anchor"></div>
+    <br>
+    <h2>Contatos</h2>
+    <h5>Se ainda assim deseja esclarecer dúvidas, os contatos estão abaixo:</h5>
+    <br>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <div class="card-body bg-MPF">
+              <div class="row">
+                <div class="col">
+                  <img src="{{url_for('static',filename='img/generica1.png')}}" alt="Imagem ####" width="80vw"
+                    height="80vw">
+                </div>
+                <div class="col">
+                  <h5 class="card-title text-white text-center">###</h5>
+                  <a class="card-text text-white text-center">Ramal: ###</a><br>
+                  <a class="card-text text-white text-center">########</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <div class="card-body bg-MPF">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-text text-white text-center">#######</h5>
+                  <a class="card-text text-white text-center">Ramal: #####</a><br>
+                  <a class="card-text text-white text-center">#######</a>
+                </div>
+                <div class="col">
+                  <img src="{{url_for('static',filename='img/generica2.png')}}" alt="Imagem ######" width="80vw"
+                    height="80vw">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+  </div>
+</body>
+<footer>
+  {%include 'addons/footer.html'%}
+</footer>
+<script>
+  window.setTimeout(function () {
+    // Move to index page after 5seconds
+    window.location.href = "/";
+  }, 8000);
+
+</script>
+
+</html>

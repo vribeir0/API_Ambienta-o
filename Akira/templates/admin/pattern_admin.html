@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% include 'addons/header.html'%}
+    <link rel="stylesheet" href="{{url_for('static',filename='css/adminscreen.css')}}" />
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    {% block chartcontentscript %}
+    {% endblock %}
+</head>
+
+<body>
+    <nav id="navbarCTIC" class="navbar navbar-expand-lg fixed-top navbar-dark px-2 py-2">
+        <a class="navbar-brand py-0" href="#####" target="_blank"><img
+                src="{{url_for('static',filename='img/')}}"
+                alt="#####" height="30vh"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link py-0" href="/">Início</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link py-0" href="######"
+                        target="_blank">Ambientação Tecnológica</a>
+                </li>
+                <li class="nav-item">
+                    <a href="admin" class="btn bg-hover py-0 mr-1 ml-1" role="button">Admin</a>
+                </li>
+                <li class="nav-item">
+                    <a href="logout" class="btn bg-hover py-0 mr-1 ml-1" role="button">Logout</a>
+                </li>
+                <li>
+                    <form action="login">
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="wrapper d-flex">
+        {% block lateraltool %}
+        {% endblock %}
+        {% block body %}
+        {% endblock %}
+    </div>
+</body>
+
+</html>
